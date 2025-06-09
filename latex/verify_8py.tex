@@ -1,0 +1,138 @@
+\doxysection{verify.\+py File Reference}
+\hypertarget{verify_8py}{}\label{verify_8py}\index{verify.py@{verify.py}}
+
+
+Module responsible for verifying the pdf signature.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{verify_8py_a1560a690626fdac6e6127f8f656addd4}{verify.\+load\+\_\+public\+\_\+key}} (public\+\_\+key\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Function that load private\+\_\+key from file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{verify_8py_a24a06781c440aa93e315a5e4f454eb62}{verify.\+hash\+\_\+pdf}} (pdf\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Function that caltulate hash function for a pdf file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{verify_8py_a4e35f4418459d38671c09031ccec757a}{verify.\+verify\+\_\+pdf}} (pdf\+\_\+path, public\+\_\+key)
+\begin{DoxyCompactList}\small\item\em Function that checks whether the PDF file contains a valid digital signature. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{verify_8py_a708a4eab22bd372d0b6e1dbccc337aac}{verify.\+select\+\_\+pdf}} ()
+\begin{DoxyCompactList}\small\item\em Function that opens a dialog box that allows the user to select a PDF file from the file system. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{verify_8py_a1afb69a31ac9726f8336595204a99995}{verify.\+on\+\_\+verify}} ()
+\begin{DoxyCompactList}\small\item\em Function that is called when user clicks "{}\+Verify PDF"{} button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{verify_8py_a5978720a1bc49b164daf0d83cb13d23f}\label{verify_8py_a5978720a1bc49b164daf0d83cb13d23f} 
+{\bfseries verify.\+root} = tk.\+Tk()
+\item 
+\Hypertarget{verify_8py_a78894123193ce2d954c491481201725c}\label{verify_8py_a78894123193ce2d954c491481201725c} 
+{\bfseries verify.\+text}
+\item 
+\Hypertarget{verify_8py_a84d1dfc2ff81a074317cb274cb2966c2}\label{verify_8py_a84d1dfc2ff81a074317cb274cb2966c2} 
+{\bfseries verify.\+pady}
+\item 
+\Hypertarget{verify_8py_ab2daa857d580ce3e514865f1a294b2c0}\label{verify_8py_ab2daa857d580ce3e514865f1a294b2c0} 
+{\bfseries verify.\+key\+\_\+entry} = tk.\+Entry(root, width=30)
+\item 
+\Hypertarget{verify_8py_ae9c785263315b46afef98ab1eecd6688}\label{verify_8py_ae9c785263315b46afef98ab1eecd6688} 
+{\bfseries verify.\+browse\+\_\+key\+\_\+button} = tk.\+Button(root, text="{}Browse"{}, command=lambda\+: key\+\_\+entry.\+insert(0, filedialog.\+askopenfilename(filetypes=\mbox{[}("{}PEM Files"{}, "{}\texorpdfstring{$\ast$}{*}.pem"{})\mbox{]})))
+\item 
+\Hypertarget{verify_8py_aa01a061758d29f66e43f696fbd71950e}\label{verify_8py_aa01a061758d29f66e43f696fbd71950e} 
+{\bfseries verify.\+pdf\+\_\+entry} = tk.\+Entry(root, width=30)
+\item 
+\Hypertarget{verify_8py_a2ba844e5947bc09a48bca16fac9a2539}\label{verify_8py_a2ba844e5947bc09a48bca16fac9a2539} 
+{\bfseries verify.\+browse\+\_\+pdf\+\_\+button} = tk.\+Button(root, text="{}Browse"{}, command=lambda\+: pdf\+\_\+entry.\+insert(0, \mbox{\hyperlink{verify_8py_a708a4eab22bd372d0b6e1dbccc337aac}{select\+\_\+pdf}}()))
+\item 
+\Hypertarget{verify_8py_a84ab0a8527d4acedfc5a645c46bfadb2}\label{verify_8py_a84ab0a8527d4acedfc5a645c46bfadb2} 
+{\bfseries verify.\+verify\+\_\+button} = tk.\+Button(root, text="{}Verify PDF"{}, command=\mbox{\hyperlink{verify_8py_a1afb69a31ac9726f8336595204a99995}{on\+\_\+verify}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Module responsible for verifying the pdf signature. 
+
+Steps that user must perform\+:
+\begin{DoxyEnumerate}
+\item Start Module
+\item Select public key file
+\item Select signed pdf
+\item Click on "{}\+Verify PDF"{} button When user clicks "{}\+Verify PDF"{} button the pdf signature will the verified with public key. The user will recieve an information if the verification was successful or not 
+\end{DoxyEnumerate}
+
+\doxysubsection{Function Documentation}
+\Hypertarget{verify_8py_a24a06781c440aa93e315a5e4f454eb62}\index{verify.py@{verify.py}!hash\_pdf@{hash\_pdf}}
+\index{hash\_pdf@{hash\_pdf}!verify.py@{verify.py}}
+\doxysubsubsection{\texorpdfstring{hash\_pdf()}{hash\_pdf()}}
+{\footnotesize\ttfamily \label{verify_8py_a24a06781c440aa93e315a5e4f454eb62} 
+verify.\+hash\+\_\+pdf (\begin{DoxyParamCaption}\item[{}]{pdf\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Function that caltulate hash function for a pdf file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pdf\+\_\+path} & path to pdf file in string format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash object which contains calculated hash function
+\end{DoxyReturn}
+In this function new SHA256 object is created. Next the hash function is calculated for the selected pdf file. \Hypertarget{verify_8py_a1560a690626fdac6e6127f8f656addd4}\index{verify.py@{verify.py}!load\_public\_key@{load\_public\_key}}
+\index{load\_public\_key@{load\_public\_key}!verify.py@{verify.py}}
+\doxysubsubsection{\texorpdfstring{load\_public\_key()}{load\_public\_key()}}
+{\footnotesize\ttfamily \label{verify_8py_a1560a690626fdac6e6127f8f656addd4} 
+verify.\+load\+\_\+public\+\_\+key (\begin{DoxyParamCaption}\item[{}]{public\+\_\+key\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Function that load private\+\_\+key from file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em public\+\_\+key\+\_\+path} & path to public\+\_\+key in string format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RSA object with public key
+\end{DoxyReturn}
+In this function file with public\+\_\+key is opened, public key isput in a RSA object \Hypertarget{verify_8py_a1afb69a31ac9726f8336595204a99995}\index{verify.py@{verify.py}!on\_verify@{on\_verify}}
+\index{on\_verify@{on\_verify}!verify.py@{verify.py}}
+\doxysubsubsection{\texorpdfstring{on\_verify()}{on\_verify()}}
+{\footnotesize\ttfamily \label{verify_8py_a1afb69a31ac9726f8336595204a99995} 
+verify.\+on\+\_\+verify (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Function that is called when user clicks "{}\+Verify PDF"{} button. 
+
+In this function pdf\+\_\+path and public\+\_\+key\+\_\+path are collected from use input. Next "{}load\+\_\+public\+\_\+key"{} and "{}verify\+\_\+pdf"{} functions are called. \Hypertarget{verify_8py_a708a4eab22bd372d0b6e1dbccc337aac}\index{verify.py@{verify.py}!select\_pdf@{select\_pdf}}
+\index{select\_pdf@{select\_pdf}!verify.py@{verify.py}}
+\doxysubsubsection{\texorpdfstring{select\_pdf()}{select\_pdf()}}
+{\footnotesize\ttfamily \label{verify_8py_a708a4eab22bd372d0b6e1dbccc337aac} 
+verify.\+select\+\_\+pdf (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Function that opens a dialog box that allows the user to select a PDF file from the file system. 
+
+\begin{DoxyReturn}{Returns}
+path to pdf file in string format 
+\end{DoxyReturn}
+\Hypertarget{verify_8py_a4e35f4418459d38671c09031ccec757a}\index{verify.py@{verify.py}!verify\_pdf@{verify\_pdf}}
+\index{verify\_pdf@{verify\_pdf}!verify.py@{verify.py}}
+\doxysubsubsection{\texorpdfstring{verify\_pdf()}{verify\_pdf()}}
+{\footnotesize\ttfamily \label{verify_8py_a4e35f4418459d38671c09031ccec757a} 
+verify.\+verify\+\_\+pdf (\begin{DoxyParamCaption}\item[{}]{pdf\+\_\+path}{, }\item[{}]{public\+\_\+key}{}\end{DoxyParamCaption})}
+
+
+
+Function that checks whether the PDF file contains a valid digital signature. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pdf\+\_\+path} & path to pdf file in string format \\
+\hline
+{\em public\+\_\+key} & public key object\\
+\hline
+\end{DoxyParams}
+In this function uses the RSA public key to verify the signature. After the verification it created a Messagebox with information about the result. 

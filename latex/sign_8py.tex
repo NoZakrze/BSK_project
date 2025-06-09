@@ -1,0 +1,173 @@
+\doxysection{sign.\+py File Reference}
+\hypertarget{sign_8py}{}\label{sign_8py}\index{sign.py@{sign.py}}
+
+
+Module responsible for selected a pdf file and signing it with a private key.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{sign_8py_a4dfeaabcd4f416794a9cd83c208c038c}{sign.\+decrypt\+\_\+private\+\_\+key}} (encrypted\+\_\+data, pin)
+\begin{DoxyCompactList}\small\item\em Function that decrypt private key. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{sign_8py_aee0fb3bc01a1c575d15bb388bca7c274}{sign.\+load\+\_\+private\+\_\+key}} (usb\+\_\+path, pin)
+\begin{DoxyCompactList}\small\item\em Function that load private\+\_\+key from usb. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{sign_8py_ad49ab7fe17f0a3544bd7a9f95f6bac73}{sign.\+hash\+\_\+pdf}} (pdf\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Function that caltulate hash function for a pdf file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{sign_8py_a22a2c84e9adce5e5a77f460f0855ab12}{sign.\+sign\+\_\+pdf}} (pdf\+\_\+path, private\+\_\+key)
+\begin{DoxyCompactList}\small\item\em Function that add a sign to pdf file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{sign_8py_a860cf6154bacd1954729a7a7abb7bd6f}{sign.\+select\+\_\+pdf}} ()
+\begin{DoxyCompactList}\small\item\em Function that opens a dialog box that allows the user to select a PDF file from the file system. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{sign_8py_a27ec1e5d12b53ac20d7c3da809b68ee6}{sign.\+select\+\_\+usb}} ()
+\begin{DoxyCompactList}\small\item\em Function that opens a dialog box that allows the user to select a folder representing a connected USB drive or any directory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{sign_8py_a4d77b7e156f06af257b7b60d57ae4701}{sign.\+on\+\_\+sign}} ()
+\begin{DoxyCompactList}\small\item\em Function that is called when user clicks "{}\+Sign PDF"{} button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{sign_8py_a0e3535d52c06366b63026e9007c8a0f7}\label{sign_8py_a0e3535d52c06366b63026e9007c8a0f7} 
+{\bfseries sign.\+root} = tk.\+Tk()
+\item 
+\Hypertarget{sign_8py_a0a75b90797cc427bbe802877bbc62df2}\label{sign_8py_a0a75b90797cc427bbe802877bbc62df2} 
+{\bfseries sign.\+text}
+\item 
+\Hypertarget{sign_8py_a4f2464c8ca1c16a27f86af4ab403b395}\label{sign_8py_a4f2464c8ca1c16a27f86af4ab403b395} 
+{\bfseries sign.\+pady}
+\item 
+\Hypertarget{sign_8py_a4ade3c172005eefe5ac0ce622c037eea}\label{sign_8py_a4ade3c172005eefe5ac0ce622c037eea} 
+{\bfseries sign.\+pin\+\_\+entry} = tk.\+Entry(root, show="{}\texorpdfstring{$\ast$}{*}"{}, width=30)
+\item 
+\Hypertarget{sign_8py_abe44cfa712a147a5ac285178592a9617}\label{sign_8py_abe44cfa712a147a5ac285178592a9617} 
+{\bfseries sign.\+pdf\+\_\+entry} = tk.\+Entry(root, width=30)
+\item 
+\Hypertarget{sign_8py_a79066898e8d1adcddfa7fab20c86c363}\label{sign_8py_a79066898e8d1adcddfa7fab20c86c363} 
+{\bfseries sign.\+browse\+\_\+pdf\+\_\+button} = tk.\+Button(root, text="{}Browse"{}, command=lambda\+: pdf\+\_\+entry.\+insert(0, \mbox{\hyperlink{sign_8py_a860cf6154bacd1954729a7a7abb7bd6f}{select\+\_\+pdf}}()))
+\item 
+\Hypertarget{sign_8py_a75d0aa6b4aaeb9ff1fd038b3cb840102}\label{sign_8py_a75d0aa6b4aaeb9ff1fd038b3cb840102} 
+{\bfseries sign.\+generate\+\_\+button} = tk.\+Button(root, text="{}Sign PDF"{}, command=\mbox{\hyperlink{sign_8py_a4d77b7e156f06af257b7b60d57ae4701}{on\+\_\+sign}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Module responsible for selected a pdf file and signing it with a private key. 
+
+Steps that user must perform\+:
+\begin{DoxyEnumerate}
+\item Enter pin code
+\item Select PDF File
+\item Click on "{}\+Sign PDF"{} button When user clicks "{}\+Sign PDF"{} button pdf file will be singed with user\textquotesingle{}s private key 
+\end{DoxyEnumerate}
+
+\doxysubsection{Function Documentation}
+\Hypertarget{sign_8py_a4dfeaabcd4f416794a9cd83c208c038c}\index{sign.py@{sign.py}!decrypt\_private\_key@{decrypt\_private\_key}}
+\index{decrypt\_private\_key@{decrypt\_private\_key}!sign.py@{sign.py}}
+\doxysubsubsection{\texorpdfstring{decrypt\_private\_key()}{decrypt\_private\_key()}}
+{\footnotesize\ttfamily \label{sign_8py_a4dfeaabcd4f416794a9cd83c208c038c} 
+sign.\+decrypt\+\_\+private\+\_\+key (\begin{DoxyParamCaption}\item[{}]{encrypted\+\_\+data}{, }\item[{}]{pin}{}\end{DoxyParamCaption})}
+
+
+
+Function that decrypt private key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em encrypted\+\_\+data} & Encoded private key in bytes format \\
+\hline
+{\em pin} & User\textquotesingle{}s pin in string format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+decrypted private\+\_\+key in bytes format
+\end{DoxyReturn}
+In this function pin code is transformed into 256-\/byte AES key. Then AES object is created and RSA private key is decrypted using key based on pin code \Hypertarget{sign_8py_ad49ab7fe17f0a3544bd7a9f95f6bac73}\index{sign.py@{sign.py}!hash\_pdf@{hash\_pdf}}
+\index{hash\_pdf@{hash\_pdf}!sign.py@{sign.py}}
+\doxysubsubsection{\texorpdfstring{hash\_pdf()}{hash\_pdf()}}
+{\footnotesize\ttfamily \label{sign_8py_ad49ab7fe17f0a3544bd7a9f95f6bac73} 
+sign.\+hash\+\_\+pdf (\begin{DoxyParamCaption}\item[{}]{pdf\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Function that caltulate hash function for a pdf file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pdf\+\_\+path} & path to pdf file in string format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hash object which contains calculated hash function
+\end{DoxyReturn}
+In this function new SHA256 object is created. Next the hash function is calculated for the selected pdf file. \Hypertarget{sign_8py_aee0fb3bc01a1c575d15bb388bca7c274}\index{sign.py@{sign.py}!load\_private\_key@{load\_private\_key}}
+\index{load\_private\_key@{load\_private\_key}!sign.py@{sign.py}}
+\doxysubsubsection{\texorpdfstring{load\_private\_key()}{load\_private\_key()}}
+{\footnotesize\ttfamily \label{sign_8py_aee0fb3bc01a1c575d15bb388bca7c274} 
+sign.\+load\+\_\+private\+\_\+key (\begin{DoxyParamCaption}\item[{}]{usb\+\_\+path}{, }\item[{}]{pin}{}\end{DoxyParamCaption})}
+
+
+
+Function that load private\+\_\+key from usb. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em usb\+\_\+path} & path to private\+\_\+key in string format \\
+\hline
+{\em pin} & User\textquotesingle{}s pin in string format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RSA object with private key
+\end{DoxyReturn}
+In this function file with private\+\_\+key is opened, private key is decrypted and put in a RSA object \Hypertarget{sign_8py_a4d77b7e156f06af257b7b60d57ae4701}\index{sign.py@{sign.py}!on\_sign@{on\_sign}}
+\index{on\_sign@{on\_sign}!sign.py@{sign.py}}
+\doxysubsubsection{\texorpdfstring{on\_sign()}{on\_sign()}}
+{\footnotesize\ttfamily \label{sign_8py_a4d77b7e156f06af257b7b60d57ae4701} 
+sign.\+on\+\_\+sign (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Function that is called when user clicks "{}\+Sign PDF"{} button. 
+
+In this function pin is collected from user input. If the priate key was successfully loaded from file, the sign\+\_\+pdf function is called. \Hypertarget{sign_8py_a860cf6154bacd1954729a7a7abb7bd6f}\index{sign.py@{sign.py}!select\_pdf@{select\_pdf}}
+\index{select\_pdf@{select\_pdf}!sign.py@{sign.py}}
+\doxysubsubsection{\texorpdfstring{select\_pdf()}{select\_pdf()}}
+{\footnotesize\ttfamily \label{sign_8py_a860cf6154bacd1954729a7a7abb7bd6f} 
+sign.\+select\+\_\+pdf (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Function that opens a dialog box that allows the user to select a PDF file from the file system. 
+
+\begin{DoxyReturn}{Returns}
+path to pdf file in string format 
+\end{DoxyReturn}
+\Hypertarget{sign_8py_a27ec1e5d12b53ac20d7c3da809b68ee6}\index{sign.py@{sign.py}!select\_usb@{select\_usb}}
+\index{select\_usb@{select\_usb}!sign.py@{sign.py}}
+\doxysubsubsection{\texorpdfstring{select\_usb()}{select\_usb()}}
+{\footnotesize\ttfamily \label{sign_8py_a27ec1e5d12b53ac20d7c3da809b68ee6} 
+sign.\+select\+\_\+usb (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Function that opens a dialog box that allows the user to select a folder representing a connected USB drive or any directory. 
+
+\begin{DoxyReturn}{Returns}
+path to usb in string format 
+\end{DoxyReturn}
+\Hypertarget{sign_8py_a22a2c84e9adce5e5a77f460f0855ab12}\index{sign.py@{sign.py}!sign\_pdf@{sign\_pdf}}
+\index{sign\_pdf@{sign\_pdf}!sign.py@{sign.py}}
+\doxysubsubsection{\texorpdfstring{sign\_pdf()}{sign\_pdf()}}
+{\footnotesize\ttfamily \label{sign_8py_a22a2c84e9adce5e5a77f460f0855ab12} 
+sign.\+sign\+\_\+pdf (\begin{DoxyParamCaption}\item[{}]{pdf\+\_\+path}{, }\item[{}]{private\+\_\+key}{}\end{DoxyParamCaption})}
+
+
+
+Function that add a sign to pdf file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pdf\+\_\+path} & path to pdf file in string format \\
+\hline
+{\em priate\+\_\+key} & private key object\\
+\hline
+\end{DoxyParams}
+This function uses an RSA private key to generate a signature based on the hash of the PDF document. 

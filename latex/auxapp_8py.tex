@@ -1,0 +1,99 @@
+\doxysection{auxapp.\+py File Reference}
+\hypertarget{auxapp_8py}{}\label{auxapp_8py}\index{auxapp.py@{auxapp.py}}
+
+
+Module responsible for generating RSA keys and encrypting private key.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{auxapp_8py_a36b45705ca2f749b1a2fd911c33e2f31}{auxapp.\+encrypt\+\_\+private\+\_\+key}} (private\+\_\+key\+\_\+pem, pin)
+\begin{DoxyCompactList}\small\item\em Function that encrypt private key. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{auxapp_8py_a1f1a70347dc625ea5d0f5f583f5a3877}{auxapp.\+generate\+\_\+keys}} (pin, usb\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Function that generate RSA keys and write it into the appropriate files. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{auxapp_8py_a06d31f04abd09576df8c2cbfea080a69}{auxapp.\+on\+\_\+generate}} ()
+\begin{DoxyCompactList}\small\item\em Function that is called when user clicks "{}\+Generate Keys"{} button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{auxapp_8py_a9bfe4107abbaeaf180feaa81f8435b1b}\label{auxapp_8py_a9bfe4107abbaeaf180feaa81f8435b1b} 
+{\bfseries auxapp.\+root} = tk.\+Tk()
+\item 
+\Hypertarget{auxapp_8py_a036555fb2a4b44a2813b09787f13c58b}\label{auxapp_8py_a036555fb2a4b44a2813b09787f13c58b} 
+{\bfseries auxapp.\+text}
+\item 
+\Hypertarget{auxapp_8py_a2ae57fadbbe4eb5a6e04a6a2c4066786}\label{auxapp_8py_a2ae57fadbbe4eb5a6e04a6a2c4066786} 
+{\bfseries auxapp.\+pady}
+\item 
+\Hypertarget{auxapp_8py_a629d098189581756a0ac36fe41a18864}\label{auxapp_8py_a629d098189581756a0ac36fe41a18864} 
+{\bfseries auxapp.\+pin\+\_\+entry} = tk.\+Entry(root, show="{}\texorpdfstring{$\ast$}{*}"{}, width=30)
+\item 
+\Hypertarget{auxapp_8py_a142b890dfa839aea542b689911073785}\label{auxapp_8py_a142b890dfa839aea542b689911073785} 
+{\bfseries auxapp.\+generate\+\_\+button} = tk.\+Button(root, text="{}Generate Keys"{}, command=\mbox{\hyperlink{auxapp_8py_a06d31f04abd09576df8c2cbfea080a69}{on\+\_\+generate}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Module responsible for generating RSA keys and encrypting private key. 
+
+Steps that user must perform\+:
+\begin{DoxyEnumerate}
+\item Hook the pendrive
+\item Start the module
+\item Enter pin code
+\item Click on "{}\+Generate Keys"{} button When user clicks "{}\+Generate Keys"{} button RSA keys will be generated, private key will be encrypted based on user\textquotesingle{}s PIN and both keys will be stored in an appropriate locations. 
+\end{DoxyEnumerate}
+
+\doxysubsection{Function Documentation}
+\Hypertarget{auxapp_8py_a36b45705ca2f749b1a2fd911c33e2f31}\index{auxapp.py@{auxapp.py}!encrypt\_private\_key@{encrypt\_private\_key}}
+\index{encrypt\_private\_key@{encrypt\_private\_key}!auxapp.py@{auxapp.py}}
+\doxysubsubsection{\texorpdfstring{encrypt\_private\_key()}{encrypt\_private\_key()}}
+{\footnotesize\ttfamily \label{auxapp_8py_a36b45705ca2f749b1a2fd911c33e2f31} 
+auxapp.\+encrypt\+\_\+private\+\_\+key (\begin{DoxyParamCaption}\item[{}]{private\+\_\+key\+\_\+pem}{, }\item[{}]{pin}{}\end{DoxyParamCaption})}
+
+
+
+Function that encrypt private key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em private\+\_\+key\+\_\+pem} & Encoded private key in bytes format \\
+\hline
+{\em pin} & User\textquotesingle{}s pin in string format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+cipher.\+nonce Unique nonce (bytes), tag Authentication tag(bytes), ciphertext Encrypted data(bytes)
+\end{DoxyReturn}
+In this function pin code is transformed into 256-\/byte AES key. Then AES object is created and RSA private key is encrypted using key based on pin code \Hypertarget{auxapp_8py_a1f1a70347dc625ea5d0f5f583f5a3877}\index{auxapp.py@{auxapp.py}!generate\_keys@{generate\_keys}}
+\index{generate\_keys@{generate\_keys}!auxapp.py@{auxapp.py}}
+\doxysubsubsection{\texorpdfstring{generate\_keys()}{generate\_keys()}}
+{\footnotesize\ttfamily \label{auxapp_8py_a1f1a70347dc625ea5d0f5f583f5a3877} 
+auxapp.\+generate\+\_\+keys (\begin{DoxyParamCaption}\item[{}]{pin}{, }\item[{}]{usb\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Function that generate RSA keys and write it into the appropriate files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & User\textquotesingle{}s pin in string format \\
+\hline
+{\em usb\+\_\+path} & Root path to the usb in string format for example "{}\+D\+:"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+no return
+\end{DoxyReturn}
+In this function a pair of RSA keys are generated. Then encrypt\+\_\+private\+\_\+key function is called. Then both keys are stored in appropriate location. At the end user will see message box which will inform about result of the saving operation \Hypertarget{auxapp_8py_a06d31f04abd09576df8c2cbfea080a69}\index{auxapp.py@{auxapp.py}!on\_generate@{on\_generate}}
+\index{on\_generate@{on\_generate}!auxapp.py@{auxapp.py}}
+\doxysubsubsection{\texorpdfstring{on\_generate()}{on\_generate()}}
+{\footnotesize\ttfamily \label{auxapp_8py_a06d31f04abd09576df8c2cbfea080a69} 
+auxapp.\+on\+\_\+generate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Function that is called when user clicks "{}\+Generate Keys"{} button. 
+
+In this function pin is collected from user input. If the pin is given by the user, the generate\+\_\+keys function is called. 
